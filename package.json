@@ -1,7 +1,7 @@
 {
-  "name": "palomitas-dl",
+  "name": "palomitas-engine",
   "type": "module",
-  "version": "5.0.0",
+  "version": "0.0.1",
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
