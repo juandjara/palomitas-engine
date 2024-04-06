@@ -1,10 +1,10 @@
-FROM node:20-alpine AS base
+FROM node:20-alpine
 
 RUN apk add --no-cache libc6-compat ffmpeg
 
 WORKDIR /app
 
-COPY package*json tsconfig.json src ./
+COPY . .
 
 RUN npm ci && \
     npm prune --production
@@ -14,5 +14,6 @@ RUN adduser --system --uid 1001 hono
 
 USER hono
 EXPOSE 3000
+EXPOSE 6881
 
 CMD ["npm", "start"]

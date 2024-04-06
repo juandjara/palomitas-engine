@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  engine:
+    restart: unless-stopped
+    build: .
+    # image: ghcr.io/juandjara/palomitas-engine:latest
+    container_name: palomitas-engine
+    environment:
+      - NODE_ENV=production
+      - STORAGE_PATH=/app/storage
+    ports:
+      - 3000:3000
+      - 7881:6881
+      - 7881:6881/udp
+    volumes:
+      - ./storage:/app/storage
+      - ./storage/torrents:/tmp/torrent-stream
