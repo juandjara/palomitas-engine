@@ -59,4 +59,4 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            docker-compose -f ${{ secrets.SSH_BASE_FOLDER }}/${{ github.event.repository.name }}/docker-compose.yml up -d
+            docker compose -f ${{ secrets.SSH_BASE_FOLDER }}/${{ github.event.repository.name }}/docker-compose.yml up -d
