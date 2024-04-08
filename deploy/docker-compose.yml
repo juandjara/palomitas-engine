@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  engine:
+    restart: unless-stopped
+    image: ghcr.io/juandjara/palomitas-engine:latest
+    container_name: palomitas-engine
+    user: 1000:1000
+    environment:
+      - NODE_ENV=production
+      - STORAGE_PATH=/app/storage
+      - BITTORRENT_PORT=7881
+    ports:
+      - 7881:7881
+      - 7881:7881/udp
+    volumes:
+      - ./storage:/app/storage
+      - ./storage/torrents:/tmp/torrent-stream
+    networks:
+      - web
+    labels:
+      caddy: png.djara.dev
+      # caddy.authorize: "with auth_policy"
+      caddy.reverse_proxy: "{{upstreams 3000}}"
+
+networks:
+  web:
+    external: true
